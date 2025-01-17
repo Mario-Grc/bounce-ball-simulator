@@ -7,12 +7,13 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class SwingBallDsiplay extends JPanel implements BallDisplay{
     public static final int FLOOR_HEIGHT = 5;
     private Grabbed grabbed = null;
     private Released released = null;
-    private Circle currentCircle = null;
+    private Optional<Circle> currentCircle;
     private final List<Circle> circles;
     private int width;
     private int height;
@@ -32,21 +33,15 @@ public class SwingBallDsiplay extends JPanel implements BallDisplay{
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if (grabbed == null){
-                    return;
-                }
+                if (grabbed == null) return;
                 currentCircle = findCircle(toReferenceX(e.getX()), toReferenceY(e.getY()));
-                if(currentCircle != null){
-                    grabbed.at(currentCircle);
-                }
+                currentCircle.ifPresent(circle -> grabbed.at(circle));
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                if (released == null || currentCircle == null){
-                    return;
-                }
-                released.at(createNewCircle(currentCircle, e));
+                if(currentCircle.isEmpty()) return;
+                currentCircle.ifPresent(circle -> released.at(createNewCircle(circle, e)));
             }
 
             @Override
@@ -65,10 +60,8 @@ public class SwingBallDsiplay extends JPanel implements BallDisplay{
         return new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                if(grabbed == null || currentCircle == null){
-                    return;
-                }
-                grabbed.at(createNewCircle(currentCircle, e));
+                if(grabbed == null || currentCircle.isEmpty()) return;
+                currentCircle.ifPresent(circle -> grabbed.at(createNewCircle(circle, e)));
             }
 
             @Override
@@ -95,12 +88,11 @@ public class SwingBallDsiplay extends JPanel implements BallDisplay{
         return height - y;
     }
 
-    private Circle findCircle(int x, int y) {
+    private Optional<Circle> findCircle(int x, int y) {
         synchronized (circles){
             return circles.stream()
                     .filter(c -> c.isAt(x, y))
-                    .findFirst()
-                    .orElse(null);
+                    .findFirst();
         }
     }
 

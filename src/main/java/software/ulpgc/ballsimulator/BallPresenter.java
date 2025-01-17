@@ -30,7 +30,7 @@ public class BallPresenter {
     }
 
     private BallDisplay.Released createReleased() {
-        return circle -> grabbedBall = null;
+        return _ -> grabbedBall = null;
     }
 
     private BallDisplay.Grabbed createGrabbed() {
@@ -104,7 +104,7 @@ public class BallPresenter {
 
     private void simulateBalls() {
         balls = balls.stream()
-                .map(b -> simulateBall(b))
+                .map(this::simulateBall)
                 .toList();
     }
 
