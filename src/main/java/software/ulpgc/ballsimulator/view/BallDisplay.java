@@ -1,4 +1,4 @@
-package software.ulpgc.ballsimulator;
+package software.ulpgc.ballsimulator.view;
 
 import java.util.List;
 

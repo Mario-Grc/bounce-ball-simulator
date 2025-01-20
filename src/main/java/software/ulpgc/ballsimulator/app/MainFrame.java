@@ -1,4 +1,6 @@
-package software.ulpgc.ballsimulator;
+package software.ulpgc.ballsimulator.app;
+
+import software.ulpgc.ballsimulator.view.BallDisplay;
 
 import javax.swing.*;
 import java.awt.*;

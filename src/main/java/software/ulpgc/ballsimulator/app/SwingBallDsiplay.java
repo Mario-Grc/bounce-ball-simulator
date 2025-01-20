@@ -1,4 +1,6 @@
-package software.ulpgc.ballsimulator;
+package software.ulpgc.ballsimulator.app;
+
+import software.ulpgc.ballsimulator.view.BallDisplay;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class SwingBallDsiplay extends JPanel implements BallDisplay{
+public class SwingBallDsiplay extends JPanel implements BallDisplay {
     public static final int FLOOR_HEIGHT = 5;
     private Grabbed grabbed = null;
     private Released released = null;

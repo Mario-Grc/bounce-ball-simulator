@@ -1,5 +1,7 @@
 package software.ulpgc.ballsimulator;
 
+import software.ulpgc.ballsimulator.model.Ball;
+
 public class BallSimlator {
     private final double dt;
 

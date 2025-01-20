@@ -1,5 +1,9 @@
 package software.ulpgc.ballsimulator;
 
+import software.ulpgc.ballsimulator.app.MainFrame;
+import software.ulpgc.ballsimulator.model.Ball;
+import software.ulpgc.ballsimulator.presenter.BallPresenter;
+
 public class Main {
     public static void main(String[] args) {
         MainFrame frame = new MainFrame();

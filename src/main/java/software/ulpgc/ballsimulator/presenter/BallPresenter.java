@@ -1,4 +1,8 @@
-package software.ulpgc.ballsimulator;
+package software.ulpgc.ballsimulator.presenter;
+
+import software.ulpgc.ballsimulator.BallSimlator;
+import software.ulpgc.ballsimulator.model.Ball;
+import software.ulpgc.ballsimulator.view.BallDisplay;
 
 import java.util.ArrayList;
 import java.util.List;
